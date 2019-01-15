@@ -26,7 +26,14 @@ const serialize = (node) => {
 };
 
 const deserialize = (nodeArray) => {
-
+    let node = new Node(nodeArray[0]);
+    if (nodeArray.length >= 2) {
+        node.left = deserialize(nodeArray[1])
+    };
+    if (nodeArray.length >= 3) {
+        node.right = deserialize(nodeArray[2])
+    };
+    return node;
 }
 
-// console.log(deserialize(JSON.parse(serialize(node))));
+console.log(deserialize(JSON.parse(serialize(node))).left.left.val);
